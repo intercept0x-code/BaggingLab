@@ -1,0 +1,30 @@
+MKF-C2Z / MKF-C2 REPORT FORMAT — V2.1.1
+=========================================
+
+MKF-C2Z
+-------
+A report begins:
+  MKF-C2Z|<base64 gzip payload>
+
+To decode:
+1. Remove the leading "MKF-C2Z|".
+2. Base64-decode the remaining text.
+3. Gunzip the bytes as UTF-8.
+4. The result is one JSON array whose first item is "MKF-C2".
+
+MKF-C2 remains self describing. Its third top-level element is the schema object.
+V2.1.1 extends player and position-loss records with lab-only telemetry:
+- launderedLosses
+- avoidedDebtM
+- graceAbuseTicks
+- driverIntent
+- inGrace
+- graceLaundered
+
+The attack-suite object may contain three independently run suites:
+- balanced
+- full
+- grace
+Each stores test count, races per configuration, sorted results, ROI/top-3 metrics, and abuse diagnostics.
+
+No anti-bagging mechanic is changed by these telemetry fields.

@@ -42,3 +42,6 @@ textarea{min-height:260px;resize:vertical;font-family:ui-monospace,SFMono-Regula
 .note{background:#101821;border-left:3px solid var(--accent);padding:10px 12px;border-radius:8px}
 .progressbar{height:7px;background:#0f141b;border-radius:999px;overflow:hidden;margin-top:5px}.progressbar>div{height:100%;background:var(--s1)}
 .exportstats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}@media(max-width:700px){.exportstats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+summary{cursor:pointer;color:var(--muted);font-size:13px}
+details{border-top:1px solid var(--border);padding-top:10px}

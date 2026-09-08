@@ -1,0 +1,39 @@
+MKF-C2Z / MKF-C2 REPORT FORMAT
+==============================
+
+MKF-C2Z
+-------
+A report begins:
+  MKF-C2Z|<base64 gzip payload>
+
+To decode:
+1. Remove the leading "MKF-C2Z|".
+2. Base64-decode the remaining text.
+3. Gunzip the bytes as UTF-8.
+4. The result is one JSON array whose first item is "MKF-C2".
+
+Copy chunks shown inside the app use:
+  MKF-C2Z|part/total|<piece>
+Concatenate each <piece> in numerical order. The reconstructed text itself begins
+"MKF-C2Z|" and can then be decoded as above.
+
+MKF-C2
+------
+MKF-C2 is intentionally self describing. Its third top-level element is a schema object
+containing:
+- dictionaries for strategy / AI / item / track / skill / capture indexes
+- numeric scale factors
+- field order for config, summaries, players, snapshots, frames, and event types
+
+Precision / quantization
+------------------------
+The report preserves every captured player record, snapshot, frame (when selected), and
+event, but removes meaningless floating-point tails:
+- ratios / credit / effort / skill: integer * 1000
+- ERP: integer * 100
+- times: 0.5-second ticks
+- distances and debt: nearest meter
+- effort-window / grace configuration: tenths of a second
+
+This is intended as forensic-analysis fidelity rather than a byte-for-byte copy of the
+JavaScript heap.

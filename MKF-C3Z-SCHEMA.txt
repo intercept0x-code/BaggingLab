@@ -1,0 +1,17 @@
+MKF-C3 / MKF-C3Z — V2.2
+
+Top level:
+0 format marker (MKF-C3)
+1 model version
+2 self-describing schema
+3 packed config (includes fixed causal-grace parameters)
+4 paired race seeds
+5 summaries [Instant, V1, V2.2]
+6 paired health [Instant, V1, V2.2]
+7 frozen V2.1 reference [summary, paired health]
+8 stress matrix
+9 exploit hunter object (balanced/full/grace)
+10 captured races [Instant, V1, V2.2]
+
+MKF-C3Z = gzip(JSON(MKF-C3)) encoded as Base64 after prefix MKF-C3Z|.
+The embedded SCHEMA object defines exact packed player/event fields and scales.
